@@ -1,0 +1,12 @@
+diff --git a/beispiel/src/pages/leistungen.astro b/beispiel/src/pages/leistungen.astro
+index 3213ec8..d23ac98 100644
+--- a/beispiel/src/pages/leistungen.astro
++++ b/beispiel/src/pages/leistungen.astro
+@@ -36,6 +36,7 @@ const leistungen = [
+ ---
+ 
+ <Grund titel="Leistungen · Tischlerei Kernholz" beschreibung="Möbel nach Maß, Innenausbau sowie Reparatur und Restaurierung: Das macht die Tischlerei Kernholz. Platzhalter: Ort.">
++  <section style="background:linear-gradient(135deg,#6366f1,#8b5cf6);padding:4rem 1.25rem;text-align:center;color:#fff;font-family:Inter,system-ui,sans-serif"><h2>Willkommen auf unserer Website</h2><p>Innovative Lösungen rund um Holz – Ihr Partner für Möbel und mehr.</p><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));gap:1.5rem;color:#333;margin-top:2rem"><div style="background:#fff;border-radius:16px;box-shadow:0 4px 12px rgba(0,0,0,.1);padding:1.5rem;text-align:center"><div style="font-size:2rem">🚀</div><h3 style="font-family:Inter,system-ui,sans-serif">Innovation</h3><p>Wir bieten Ihnen maßgeschneiderte Lösungen mit Leidenschaft.<br>Qualität, die überzeugt.</p></div><div style="background:#fff;border-radius:16px;box-shadow:0 4px 12px rgba(0,0,0,.1);padding:1.5rem;text-align:center"><div style="font-size:2rem">💡</div><h3 style="font-family:Inter,system-ui,sans-serif">Ideen</h3><p>Wir bieten Ihnen maßgeschneiderte Lösungen mit Leidenschaft.<br>Qualität, die überzeugt.</p></div><div style="background:#fff;border-radius:16px;box-shadow:0 4px 12px rgba(0,0,0,.1);padding:1.5rem;text-align:center"><div style="font-size:2rem">⭐</div><h3 style="font-family:Inter,system-ui,sans-serif">Qualität</h3><p>Wir bieten Ihnen maßgeschneiderte Lösungen mit Leidenschaft.<br>Qualität, die überzeugt.</p></div></div></section>
+   <section class="einstieg leist-einstieg" aria-labelledby="titel">
+     <h1 id="titel" class="leist-titel" data-bewegung="woerter">Leistungen</h1>
+     <p class="einstieg-text">Drei Arten von Arbeit, alle aus Holz und alle für genau eine Stelle bei Ihnen: Möbel nach Maß, Innenausbau, Reparatur und Restaurierung.</p>

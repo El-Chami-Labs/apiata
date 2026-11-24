@@ -1,0 +1,10 @@
+diff --git a/beispiel/src/pages/leistungen.astro b/beispiel/src/pages/leistungen.astro
+index 3213ec8..9febcdb 100644
+--- a/beispiel/src/pages/leistungen.astro
++++ b/beispiel/src/pages/leistungen.astro
+@@ -60,3 +60,5 @@ const leistungen = [
+     </section>
+   ))}
+ </Grund>
++
++<p style="width:34rem;white-space:nowrap">Platzhalter: Hinweis zur Werkstattbesichtigung nach Vereinbarung</p>

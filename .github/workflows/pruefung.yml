@@ -1,0 +1,66 @@
+# Feste Prüfungen bei jedem Push und Pull Request. Ergebnis als Haken im Pull Request.
+# Ohne package.json (Kit-Repo vor dem Setup) endet der Lauf grün nach dem ersten Schritt. Unfertig-Sperre und Kern-Tests
+# laufen erst mit projekt.json, auf main also erst nach dem Merge des Setups. Zeitgrenzen: Job 15 Minuten, Browser 5 Minuten
+# (zwei Versuche zu je 140 s).
+name: Prüfung
+on:
+  push:
+  pull_request:
+jobs:
+  pruefung:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Aufräum-Wächter (tote Verweise, verwaiste Dateien, Laufreste, alte Namen)
+        run: |
+          git fetch --quiet --depth=1 origin main || true
+          node scripts/aufraeumen.mjs
+      - name: Projekt vorhanden?
+        id: projekt
+        run: |
+          if [ -f package.json ]; then echo "da=ja" >> "$GITHUB_OUTPUT"; else echo "Kein Projekt (package.json fehlt)"; fi
+          if [ -f projekt.json ]; then echo "setup=ja" >> "$GITHUB_OUTPUT"; else echo "Setup nicht gemergt (projekt.json fehlt)"; fi
+      - uses: actions/setup-node@v4
+        if: steps.projekt.outputs.da == 'ja'
+        with:
+          node-version: 22
+          cache: npm
+      - name: Installieren
+        if: steps.projekt.outputs.da == 'ja'
+        run: npm ci
+      - name: Paket-Prüfung (Freigaben, Lizenzen)
+        if: steps.projekt.outputs.da == 'ja'
+        run: node scripts/pakete.mjs .
+      - name: Build
+        if: steps.projekt.outputs.da == 'ja'
+        run: npm run build
+      - name: Unfertig-Sperre (nur main)
+        if: steps.projekt.outputs.da == 'ja' && steps.projekt.outputs.setup == 'ja' && github.ref == 'refs/heads/main'
+        run: node scripts/unfertig-sperre.mjs dist --main
+      - name: Typen
+        if: steps.projekt.outputs.da == 'ja'
+        run: npm run typen
+      - name: Lint
+        if: steps.projekt.outputs.da == 'ja'
+        run: npm run lint
+      - name: Logik-Tests
+        if: steps.projekt.outputs.da == 'ja'
+        run: npm run test
+      - name: Datenschutz (fremde Quellen)
+        if: steps.projekt.outputs.da == 'ja'
+        run: node scripts/fremdquellen.mjs dist
+      - name: Fakten ohne Platzhalter
+        if: steps.projekt.outputs.da == 'ja'
+        run: node scripts/fakten.mjs dist
+      - name: Browser installieren
+        if: steps.projekt.outputs.da == 'ja'
+        timeout-minutes: 5
+        run: timeout 140 npx playwright install --with-deps chromium || { echo "Browser-Installation hängt, zweiter Versuch"; timeout 140 npx playwright install --with-deps chromium; }
+      - name: Kern-Tests und Layout-Wächter
+        if: steps.projekt.outputs.da == 'ja' && steps.projekt.outputs.setup == 'ja'
+        run: npm run e2e
+      - name: Messungen (blockieren nie)
+        if: steps.projekt.outputs.da == 'ja' && always()
+        continue-on-error: true
+        run: npm run messung || echo "Messungen gemeldet, blockieren nicht"

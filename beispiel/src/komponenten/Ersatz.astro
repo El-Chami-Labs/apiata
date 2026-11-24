@@ -1,0 +1,13 @@
+---
+// Bildersatz „Ausschnitt“: Fläche mit großem Ausschnitt, der einen zweiten Ton zeigt; je Stelle eine andere Form.
+interface Props {
+  form: 1 | 2 | 3 | 4 | 5 | 6;
+  motiv: string;
+  klasse?: string;
+}
+const { form, motiv, klasse = "" } = Astro.props;
+---
+
+<div class={`ersatz ${klasse}`} data-form={form} role="img" aria-label={`Foto folgt: ${motiv}`}>
+  <span class="ersatz-hinweis" aria-hidden="true">Foto folgt: {motiv}</span>
+</div>

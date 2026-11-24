@@ -1,0 +1,14 @@
+diff --git a/beispiel/src/pages/index.astro b/beispiel/src/pages/index.astro
+index a2719e8..c5b40c9 100644
+--- a/beispiel/src/pages/index.astro
++++ b/beispiel/src/pages/index.astro
+@@ -51,6 +51,9 @@ const titel = "Tischlerei Kernholz: Möbel nach Maß, Innenausbau, Restaurierung
+     <div class="einstieg-tafel"><Ersatz form={1} motiv="Werkbank mit frisch gehobelter Eiche" /><p class="einstieg-kopie" aria-hidden="true" data-bewegung="woerter">Wir schneiden zu, was es so nicht zu kaufen gibt.</p></div>
+   </section>
+ 
++  <div style="height:3rem;background:#39ff14"></div>
++  <div style="height:14rem;margin:2rem 1.25rem;background:#c8c8c8"></div>
++  <p style="margin:0 1.25rem;font-size:1rem">0</p>
+   <section id="leistungen" class="flaeche hell" aria-labelledby="leistungen-titel">
+     <div class="innen">
+       <h2 id="leistungen-titel" class="leistungen-kopf" data-bewegung="woerter">Das schneiden wir für Sie zu</h2>

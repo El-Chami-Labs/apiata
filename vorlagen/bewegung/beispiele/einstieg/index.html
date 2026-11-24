@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="data:," />
+    <title>Beispiel: 3D-Szene im Einstieg</title>
+    <script>
+      (function(){var h=document.documentElement;if(matchMedia("(prefers-reduced-motion: reduce)").matches)return;h.classList.add("bewegt");setTimeout(function(){if(!h.classList.contains("bewegung-bereit"))h.classList.remove("bewegt")},3000)})()
+    </script>
+    <!-- Kit-Test: Bibliotheken gebündelt und minifiziert wie im Build eines Projekts (min/), über eine Import-Map -->
+    <script type="importmap">
+      { "imports": { "motion": "/min/motion.mjs", "lenis": "/min/lenis.mjs", "three": "/min/three.mjs", "three/addons/": "/min/three-addons/" } }
+    </script>
+    <link rel="stylesheet" href="/bausteine/bewegung.css" />
+    <style>
+      body { margin: 0; font-family: system-ui, sans-serif; line-height: 1.5; color: #f3efe6; background: #14120f; }
+      .einstieg { display: grid; gap: 1.5rem; padding: 2rem 1.25rem; max-width: 70rem; margin-inline: auto; }
+      @media (width >= 48rem) { .einstieg { grid-template-columns: 1fr 1fr; align-items: center; min-height: 80svh; } }
+      h1 { font-size: clamp(2rem, 1.5rem + 3vw, 4rem); line-height: 1.05; margin: 0; }
+      [data-szene] { --szene-format: 1 / 1; max-width: 28rem; width: 100%; border-radius: 1rem; }
+      [data-szene-ersatz] { background: radial-gradient(circle at 40% 35%, #f6d48b, #c27c2c 50%, #2a1a0b); }
+      section { padding: 3rem 1.25rem; max-width: 70rem; margin-inline: auto; min-height: 60svh; }
+      p { max-width: 60ch; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="einstieg">
+        <div>
+          <h1 data-bewegung="woerter">Ein Objekt, das dem Blick folgt</h1>
+          <p data-bewegung="gleiten">Die Szene steht im ersten Bildschirm; sie lädt sofort, der Ersatz trägt bis dahin.</p>
+        </div>
+        <div data-szene><div data-szene-ersatz></div></div>
+      </div>
+      <section><h2 data-bewegung="gleiten">Weiter unten</h2><p>Text unter dem Einstieg.</p></section>
+      <section><h2 data-bewegung="gleiten">Zum Schluss</h2><p>Noch ein Abschnitt.</p></section>
+    </main>
+    <script type="module">
+      import { bewegungStarten } from "/bausteine/bewegung.mjs";
+      import { szeneStarten } from "/bausteine/szene-3d.mjs";
+      bewegungStarten({ sanft: true });
+      szeneStarten(document.querySelector("[data-szene]"));
+    </script>
+  </body>
+</html>

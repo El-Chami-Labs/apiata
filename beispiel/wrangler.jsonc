@@ -1,0 +1,9 @@
+{
+  // Cloudflare Workers Builds: statische Seiten aus dist/, Vorschau-Link je Branch
+  "name": "kernholz-beispiel",
+  "compatibility_date": "2026-11-01",
+  "assets": { "directory": "./dist", "not_found_handling": "404-page" },
+  "workers_dev": true,
+  "preview_urls": true,
+  "previews": {}
+}

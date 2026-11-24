@@ -1,0 +1,89 @@
+---
+import Grund from "../layouts/Grund.astro";
+import { ARTEN, EMPFAENGER } from "../logik/anfrage";
+---
+
+<Grund titel="Anfrage stellen">
+  <div class="seite"><div class="seite-innen">
+    <h1>Anfrage stellen</h1>
+    <p>Beschreiben Sie kurz Ihr Vorhaben. Beim Absenden öffnet sich Ihr E-Mail-Programm mit fertigem Text. Die Website speichert nichts.</p>
+    <form class="anfrage" id="anfrage-form" method="post" action={`mailto:${EMPFAENGER}`} enctype="text/plain" autocomplete="on">
+      <div class="feld">
+        <label for="a-name">Name</label>
+        <input id="a-name" name="name" type="text" autocomplete="name" required aria-describedby="a-name-f" />
+        <p class="feld-fehler" id="a-name-f" hidden></p>
+      </div>
+      <div class="feld">
+        <label for="a-email">E-Mail</label>
+        <input id="a-email" name="email" type="email" autocomplete="email" aria-describedby="a-kontakt-f a-email-f" />
+        <p class="feld-fehler" id="a-email-f" hidden></p>
+      </div>
+      <div class="feld">
+        <label for="a-telefon">Telefon</label>
+        <input id="a-telefon" name="telefon" type="tel" autocomplete="tel" aria-describedby="a-kontakt-f" />
+        <p class="feld-hilfe">E-Mail oder Telefon genügt, eins von beiden ist nötig.</p>
+        <p class="feld-fehler" id="a-kontakt-f" hidden></p>
+      </div>
+      <div class="feld">
+        <label for="a-art">Art des Vorhabens</label>
+        <select id="a-art" name="art">
+          {Object.entries(ARTEN).map(([wert, name]) => <option value={wert}>{name}</option>)}
+        </select>
+      </div>
+      <div class="feld">
+        <label for="a-beschreibung">Beschreibung</label>
+        <textarea id="a-beschreibung" name="beschreibung" rows="6" required aria-describedby="a-beschreibung-f"></textarea>
+        <p class="feld-fehler" id="a-beschreibung-f" hidden></p>
+      </div>
+      <div class="feld">
+        <label for="a-zeitraum">Wunschzeitraum (freiwillig)</label>
+        <input id="a-zeitraum" name="zeitraum" type="text" placeholder="zum Beispiel: im Frühjahr" />
+      </div>
+      <button class="knopf" type="submit">Anfrage absenden</button>
+      <p class="anfrage-mail" id="anfrage-mail" hidden>
+        Falls sich kein E-Mail-Programm öffnet: <a id="anfrage-link" href="#">E-Mail mit Ihren Angaben</a>
+      </p>
+    </form>
+    <h2>Lieber anrufen?</h2>
+    <p>Telefon: Platzhalter: Telefonnummer</p>
+    <p>E-Mail: Platzhalter: E-Mail-Adresse</p>
+    <p><a href="/">Zurück zur Startseite</a></p>
+  </div></div>
+</Grund>
+
+<script>
+  import { anfragePruefen, mailtoLink, type Anfrage } from "../logik/anfrage";
+
+  const form = document.getElementById("anfrage-form") as HTMLFormElement;
+  form.noValidate = true;
+  const wert = (n: string) => (form.elements.namedItem(n) as HTMLInputElement).value;
+  const zeige = (id: string, text?: string) => {
+    const p = document.getElementById(id)!;
+    p.textContent = text ?? "";
+    p.hidden = !text;
+  };
+
+  const art = new URLSearchParams(location.search).get("leistung");
+  const auswahl = form.elements.namedItem("art") as HTMLSelectElement;
+  if (art && [...auswahl.options].some((o) => o.value === art)) auswahl.value = art;
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const daten: Anfrage = { name: wert("name"), email: wert("email"), telefon: wert("telefon"), art: wert("art"), beschreibung: wert("beschreibung"), zeitraum: wert("zeitraum") };
+    const f = anfragePruefen(daten);
+    zeige("a-name-f", f.name);
+    zeige("a-email-f", f.email);
+    zeige("a-kontakt-f", f.kontakt);
+    zeige("a-beschreibung-f", f.beschreibung);
+    const felder: [string | undefined, string[]][] = [[f.name, ["a-name"]], [f.email, ["a-email"]], [f.kontakt, ["a-email", "a-telefon"]], [f.beschreibung, ["a-beschreibung"]]];
+    for (const id of ["a-name", "a-email", "a-telefon", "a-beschreibung"]) document.getElementById(id)!.removeAttribute("aria-invalid");
+    for (const [fehler, ids] of felder) if (fehler) for (const id of ids) document.getElementById(id)!.setAttribute("aria-invalid", "true");
+    const erstes = felder.find(([fehler]) => fehler);
+    document.getElementById("anfrage-mail")!.hidden = true;
+    if (erstes) { document.getElementById(erstes[1][0])!.focus(); return; }
+    const link = mailtoLink(daten);
+    (document.getElementById("anfrage-link") as HTMLAnchorElement).href = link;
+    document.getElementById("anfrage-mail")!.hidden = false;
+    location.href = link;
+  });
+</script>

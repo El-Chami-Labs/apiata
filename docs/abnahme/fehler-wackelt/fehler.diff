@@ -1,0 +1,28 @@
+diff --git a/beispiel/tests/e2e/ablauf.spec.ts b/beispiel/tests/e2e/ablauf.spec.ts
+index e306ff0..f8b4a6c 100644
+--- a/beispiel/tests/e2e/ablauf.spec.ts
++++ b/beispiel/tests/e2e/ablauf.spec.ts
+@@ -22,3 +22,10 @@ test("Anfrage: leer absenden zeigt Hinweis, ausgefüllt erzeugt mailto-Link", as
+   expect(href).toContain("mailto:");
+   expect(decodeURIComponent(href!)).toContain("subject=Anfrage: Innenausbau – Erika Muster");
+ });
++
++test("Startseite antwortet schnell (absichtlich wackelnd)", async ({ page }, info) => {
++  const t0 = Date.now();
++  await page.goto("/");
++  const grenze = info.retry === 0 ? 1 : 60_000; // erster Versuch scheitert sicher, die Wiederholung besteht
++  expect(Date.now() - t0).toBeLessThan(grenze);
++});
+diff --git a/beispiel/tests/e2e/zeit.messung.spec.ts b/beispiel/tests/e2e/zeit.messung.spec.ts
+new file mode 100644
+index 0000000..a82cc16
+--- /dev/null
++++ b/beispiel/tests/e2e/zeit.messung.spec.ts
+@@ -0,0 +1,7 @@
++import { expect, test } from "@playwright/test";
++
++test("Startseite in unter 1 ms geladen (Messung)", async ({ page }) => {
++  const t0 = Date.now();
++  await page.goto("/");
++  expect(Date.now() - t0).toBeLessThan(1);
++});

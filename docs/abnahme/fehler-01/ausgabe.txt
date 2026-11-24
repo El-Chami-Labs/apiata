@@ -1,0 +1,11 @@
+ok: build (2 s)
+ok: typen (4 s)
+ok: lint (1 s)
+ok: logik (1 s)
+ok: datenschutz (0 s)
+ok: fakten (0 s)
+ok: pakete (0 s)
+muss: e2e: Hauptaktion auf jeder Seite da und an keiner Scrollposition verdeckt [handy]: Error: / bei 60 %: feste Hauptaktion verdeckt von a.chat-blase
+ok: messung (0 Tests, 2 s)
+SCHNELLPRÜFUNG ROT → /home/user/dev-agents/docs/abnahme/fehler-01/schnellpruefung.md
+Exit 1

@@ -1,0 +1,12 @@
+diff --git a/beispiel/src/komponenten/Fuss.astro b/beispiel/src/komponenten/Fuss.astro
+index 24178cd..686e16e 100644
+--- a/beispiel/src/komponenten/Fuss.astro
++++ b/beispiel/src/komponenten/Fuss.astro
+@@ -11,7 +11,6 @@
+       <li><a href="/#ablauf">Ablauf</a></li>
+       <li><a href="/#werkstatt">Werkstatt</a></li>
+       <li><a href="/#fragen">Fragen</a></li>
+-      <li><a href="/impressum/">Impressum</a></li>
+       <li><a href="/datenschutz/">Datenschutz</a></li>
+     </ul>
+   </nav>

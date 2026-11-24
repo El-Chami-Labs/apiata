@@ -1,0 +1,11 @@
+ok: build (2 s)
+ok: typen (4 s)
+ok: lint (1 s)
+ok: logik (1 s)
+ok: datenschutz (0 s)
+ok: fakten (0 s)
+ok: pakete (0 s)
+muss: e2e: Layout 390 px [layout]: Error: /leistungen/ @390: waagerechtes Scrollen: Seite 544 px bei 390 px Fenster (p „Platzhalter: Hinweis zur Werks“)
+ok: messung (0 Tests, 3 s)
+SCHNELLPRÜFUNG ROT → /home/user/dev-agents/docs/abnahme/fehler-05/schnellpruefung.md
+Exit 1

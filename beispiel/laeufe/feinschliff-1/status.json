@@ -1,0 +1,43 @@
+{
+  "art": "feinschliff",
+  "branch": "feinschliff-1",
+  "start": "2026-11-05T23:12:35.447Z",
+  "phase": "fertig",
+  "freigabe": "2026-11-05T23:12:35.479Z",
+  "fragen": 0,
+  "phasen": [
+    {
+      "name": "fragen",
+      "start": "2026-11-05T23:12:35.447Z",
+      "ende": "2026-11-05T23:12:35.479Z"
+    },
+    {
+      "name": "bauen",
+      "start": "2026-11-05T23:12:35.479Z",
+      "ende": "2026-11-05T23:15:37.662Z"
+    }
+  ],
+  "features": [
+    {
+      "name": "Einstiegs-Überschrift am Handy kleiner",
+      "status": "fertig",
+      "fertigZeit": "2026-11-05T23:13:23.905Z"
+    },
+    {
+      "name": "Knopf in der Leiste am Handy einzeilig",
+      "status": "fertig",
+      "fertigZeit": "2026-11-05T23:13:32.457Z"
+    },
+    {
+      "name": "Pfeil bei den Fragen dreht sich beim Öffnen",
+      "status": "fertig",
+      "fertigZeit": "2026-11-05T23:13:51.508Z"
+    }
+  ],
+  "offen": [
+    "kann: Telefon in der Leiste am Handy 12,8 px"
+  ],
+  "annahmen": [],
+  "pr": "simuliert: laeufe/feinschliff-1/report.md",
+  "ende": "2026-11-05T23:15:37.662Z"
+}

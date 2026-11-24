@@ -1,0 +1,62 @@
+---
+import Grund from "../layouts/Grund.astro";
+import Ersatz from "../komponenten/Ersatz.astro";
+const leistungen = [
+  {
+    id: "moebel",
+    name: "Möbel nach Maß",
+    flaeche: "hell",
+    form: 2 as const,
+    motiv: "Einbauregal in Eiche, Detail der Gehrung",
+    text: "Wir bauen das Möbel für genau die Stelle, an der es stehen soll: nach Ihrem Aufmaß, in dem Holz, das zu Ihrem Raum passt, mit Fugen und Beschlägen, die Sie vorher sehen.",
+    beispiele: ["Regal für die schiefe Nische", "Esstisch für die lange Küche", "Bett mit Stauraum", "Schreibtisch für das kleine Arbeitszimmer"],
+    ablauf: "Wir messen bei Ihnen aus, zeichnen den Entwurf, bauen das Möbel in der Werkstatt und bringen es zu Ihnen. Dauer: Platzhalter: Dauer.",
+  },
+  {
+    id: "innenausbau",
+    name: "Innenausbau",
+    flaeche: "hell-2",
+    form: 3 as const,
+    motiv: "Einbauschrank unter der Dachschräge",
+    text: "Was fest im Raum bleibt, passen wir an Ihre Wände an, nicht umgekehrt. Auch wenn nichts gerade und kein Winkel rechtwinklig ist.",
+    beispiele: ["Einbauschrank unter der Dachschräge", "Innentüren und Zargen", "Vertäfelung für Wand oder Decke", "Treppenverkleidung"],
+    ablauf: "Wir sehen uns den Raum an, nehmen jede Wand einzeln auf und bauen die Teile so, dass sie vor Ort nur noch eingesetzt werden. Dauer: Platzhalter: Dauer.",
+  },
+  {
+    id: "reparatur",
+    name: "Reparatur und Restaurierung",
+    flaeche: "dunkel",
+    form: 4 as const,
+    motiv: "Restaurierte Kommode vor der Werkbank",
+    text: "Wir prüfen, was tragen muss, bessern aus und erhalten, was erhalten werden kann. Wir sagen Ihnen ehrlich, was sich lohnt und was nicht.",
+    beispiele: ["Stuhl mit wackeligen Beinen", "Kommode mit losem Fuß", "Furnier ausbessern", "Oberfläche abziehen und neu ölen"],
+    ablauf: "Sie schicken uns Fotos, wir sehen uns das Stück an, nennen den Aufwand und arbeiten erst nach Ihrem Ja. Kosten: Platzhalter: Preisrahmen.",
+  },
+];
+---
+
+<Grund titel="Leistungen · Tischlerei Kernholz" beschreibung="Möbel nach Maß, Innenausbau sowie Reparatur und Restaurierung: Das macht die Tischlerei Kernholz. Platzhalter: Ort.">
+  <section class="einstieg leist-einstieg" aria-labelledby="titel">
+    <h1 id="titel" class="leist-titel" data-bewegung="woerter">Leistungen</h1>
+    <p class="einstieg-text">Drei Arten von Arbeit, alle aus Holz und alle für genau eine Stelle bei Ihnen: Möbel nach Maß, Innenausbau, Reparatur und Restaurierung.</p>
+  </section>
+
+  {leistungen.map((l) => (
+    <section id={l.id} class={`flaeche ${l.flaeche} leist`} aria-labelledby={`${l.id}-titel`}>
+      <div class="innen leist-raster">
+        <div class="leist-text">
+          <h2 id={`${l.id}-titel`} class="leist-name" data-bewegung="woerter">{l.name}</h2>
+          <p>{l.text}</p>
+          <h3>Typische Arbeiten</h3>
+          <ul class="leist-liste">
+            {l.beispiele.map((b) => <li>{b}</li>)}
+          </ul>
+          <h3>So läuft es ab</h3>
+          <p>{l.ablauf}</p>
+          <p><a class="leist-link" href={`/anfrage/?leistung=${l.id}`}>Anfrage zu {l.name}</a></p>
+        </div>
+        <Ersatz form={l.form} motiv={l.motiv} />
+      </div>
+    </section>
+  ))}
+</Grund>

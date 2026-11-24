@@ -1,0 +1,14 @@
+/* Grundregeln; Farben, Schriften und Abstände kommen aus dem Design-System des Projekts. */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; line-height: 1.5; overflow-wrap: break-word; }
+img, svg, video, canvas { display: block; max-inline-size: 100%; block-size: auto; }
+:focus-visible { outline: 3px solid currentColor; outline-offset: 3px; }
+.sprung { position: absolute; inset-inline-start: -999px; }
+.sprung:focus { inset-inline-start: 1rem; inset-block-start: 1rem; }
+.kopf, .fuss, main { padding-inline: 1.25rem; }
+.kopf ul { display: flex; flex-wrap: wrap; gap: 1rem; list-style: none; padding: 0; }
+.fuss { display: flex; flex-wrap: wrap; gap: 1.5rem; padding-block: 2rem; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}

@@ -1,0 +1,260 @@
+/* Grundregeln und Gestaltung „Zuschnitt“; Tokens in tokens.css */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-block-end: var(--leiste); -webkit-text-size-adjust: 100%; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0;
+  background: var(--eiche);
+  color: var(--eiche);
+  font-family: var(--schrift-text);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  padding-block-end: calc(var(--leiste) + env(safe-area-inset-bottom, 0px)); /* feste Leiste verdeckt nichts */
+  overflow-x: clip;
+}
+h1, h2, h3 { font-family: var(--schrift-kopf); font-weight: 800; text-transform: uppercase; line-height: 0.9; margin: 0; letter-spacing: 0.005em; }
+p { margin: 0; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--kupfer); outline-offset: 3px; }
+.dunkel :focus-visible, .leiste :focus-visible, .fuss :focus-visible { outline-color: var(--span); }
+.sprung { position: absolute; inset-inline-start: 0.5rem; inset-block-start: -4rem; background: var(--span); color: var(--eiche); padding: 0.6rem 1rem; z-index: 100; }
+.sprung:focus { inset-block-start: 0.5rem; }
+
+/* Knopf: Kupfer mit Räuchereiche; große Schrift (Kontrast 4:1 reicht für Großschrift) */
+.knopf {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-block-size: 2.75rem; padding: 0.5rem 1.4rem;
+  background: var(--kupfer); color: var(--eiche); text-decoration: none;
+  font-family: var(--schrift-kopf); font-weight: 800; font-size: 1.5rem; text-transform: uppercase; letter-spacing: 0.03em; line-height: 1;
+  clip-path: polygon(0.7rem 0, 100% 0, 100% calc(100% - 0.7rem), calc(100% - 0.7rem) 100%, 0 100%, 0 0.7rem);
+  transition: background-color 180ms;
+}
+.knopf:hover { background: var(--span); }
+.knopf:active { background: var(--kreide); }
+
+/* Flächen: oben rechts und unten links 45-Grad-Gehrung; die Fläche ragt um die Gehrung nach oben in die vorige */
+.flaeche { position: relative; isolation: isolate; padding-block: calc(var(--gehrung) + 3rem) calc(var(--gehrung) + 2rem); padding-inline: var(--rand); }
+.flaeche::before {
+  content: ""; position: absolute; inset: calc(var(--gehrung) * -1) 0 0 0; z-index: -1; background: var(--flaeche);
+  clip-path: polygon(0 0, calc(100% - var(--gehrung)) 0, 100% var(--gehrung), 100% 100%, 0 100%);
+}
+.hell { --flaeche: var(--span); color: var(--eiche); }
+.hell-2 { --flaeche: var(--span-2); color: var(--eiche); }
+.dunkel { --flaeche: var(--eiche); color: var(--kreide); }
+.innen { max-inline-size: var(--max); margin-inline: auto; }
+
+/* Bildersatz „Ausschnitt“ */
+.ersatz { position: relative; overflow: clip; background: var(--span); aspect-ratio: var(--format, 4 / 3); isolation: isolate; }
+.ersatz::before, .ersatz::after { content: ""; position: absolute; inset: 0; }
+.ersatz-hinweis {
+  position: absolute; inset-inline-start: 0; inset-block-end: 0; z-index: 3; padding: 0.35rem 0.7rem;
+  background: var(--eiche); color: var(--kreide); font-size: 0.8125rem; line-height: 1.3; max-inline-size: 90%;
+}
+/* 1 Einstieg: großer Fensterschnitt mit Gehrungsrahmen */
+.ersatz[data-form="1"] { background: var(--span); }
+.ersatz[data-form="1"]::before { background: var(--eiche); clip-path: polygon(50% 0, 100% 0, 100% 100%, 38% 100%, 38% 62%); }
+.ersatz[data-form="1"]::after { background: var(--kupfer); clip-path: polygon(50% 0, 52.5% 0, 40.5% 62%, 40.5% 100%, 38% 100%, 38% 62%); }
+/* 2 Leistung Möbel: Dreiecksausschnitt */
+.ersatz[data-form="2"] { background: var(--span-2); }
+.ersatz[data-form="2"]::before { background: var(--eiche-2); clip-path: polygon(0 0, 100% 0, 0 100%); }
+.ersatz[data-form="2"]::after { background: var(--kupfer); clip-path: polygon(100% 0, 100% 3%, 3% 100%, 0 100%, 0 97%, 97% 0); }
+/* 3 Leistung Innenausbau: Raute */
+.ersatz[data-form="3"] { background: var(--eiche-2); }
+.ersatz[data-form="3"]::before { background: var(--span); clip-path: polygon(50% 8%, 92% 50%, 50% 92%, 8% 50%); }
+.ersatz[data-form="3"]::after { background: var(--kupfer); clip-path: polygon(50% 8%, 92% 50%, 50% 92%, 8% 50%, 50% 100%, 100% 50%, 50% 0, 0 50%, 50% 100%, 50% 92%, 8% 50%, 50% 8%); opacity: 0; }
+/* 4 Leistung Restaurierung: Trapez-Schnitt */
+.ersatz[data-form="4"] { background: var(--span); }
+.ersatz[data-form="4"]::before { background: var(--eiche); clip-path: polygon(0 30%, 70% 0, 100% 0, 100% 100%, 0 100%); }
+.ersatz[data-form="4"]::after { background: var(--span-2); clip-path: polygon(34% 100%, 100% 100%, 100% 46%); }
+/* 5 Werkstatt: breite Streifen in 45 Grad */
+.ersatz[data-form="5"] { background: var(--eiche); }
+.ersatz[data-form="5"]::before { background: var(--span-2); clip-path: polygon(0 0, 62% 0, 24% 100%, 0 100%); }
+.ersatz[data-form="5"]::after { background: var(--kupfer); clip-path: polygon(64% 0, 67% 0, 29% 100%, 26% 100%); }
+/* 6 Holz: gestufter Ausschnitt */
+.ersatz[data-form="6"] { background: var(--span-2); }
+.ersatz[data-form="6"]::before { background: var(--eiche-2); clip-path: polygon(20% 14%, 100% 14%, 100% 100%, 0 100%, 0 40%, 20% 40%); }
+.ersatz[data-form="6"]::after { background: var(--span); clip-path: polygon(52% 38%, 90% 38%, 90% 76%, 52% 76%); }
+
+/* Leiste unten */
+.leiste {
+  position: fixed; inset-inline: 0; inset-block-end: 0; z-index: 50; min-block-size: var(--leiste);
+  padding: 0.5rem var(--rand) calc(0.5rem + env(safe-area-inset-bottom, 0px));
+  background: var(--eiche); color: var(--kreide); border-block-start: 3px solid var(--kupfer);
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+}
+.leiste-name { display: none; font-family: var(--schrift-kopf); font-weight: 800; text-transform: uppercase; font-size: 1.4rem; letter-spacing: 0.04em; }
+.leiste-nav { display: none; }
+.leiste-nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 1.4rem; }
+.leiste-nav a { text-decoration: none; font-weight: 600; font-size: 0.95rem; padding-block: 0.6rem; border-block-end: 2px solid transparent; }
+.leiste-nav a:hover { border-color: var(--kupfer); }
+.leiste-tel { font-size: 0.8rem; line-height: 1.2; max-inline-size: 7.5rem; }
+.leiste .knopf { white-space: nowrap; flex: none; padding-inline: 1rem; font-size: 1.3rem; }
+@media (width >= 64rem) {
+  .leiste-name, .leiste-nav { display: block; }
+  .leiste { gap: 2rem; }
+  .leiste-tel { margin-inline-start: auto; max-inline-size: none; font-size: 1rem; }
+  .leiste .knopf { padding-inline: 1.4rem; font-size: 1.5rem; }
+}
+
+/* Einstieg */
+.einstieg { container-type: inline-size; position: relative; min-block-size: max(40rem, 100svh); overflow: clip; background: var(--eiche); color: var(--kreide); padding-block-start: var(--titel-oben); --titel-oben: 3.5rem; }
+.einstieg-titel { font-size: clamp(2.7rem, 13.9cqw, 5.25rem); line-height: 0.86; margin-inline: var(--rand); max-inline-size: 22ch; }
+.einstieg-text { margin: 1.5rem var(--rand) 0; max-inline-size: 26rem; position: relative; z-index: 2; font-size: 1.125rem; }
+.einstieg-ort { margin: 1rem var(--rand) 0; font-weight: 600; color: var(--span); position: relative; z-index: 2; }
+.einstieg-tafel { position: absolute; inset-inline: 0; inset-block-end: 0; block-size: 34%; z-index: 0; }
+.einstieg-tafel .ersatz { block-size: 100%; aspect-ratio: auto; clip-path: polygon(0 var(--gehrung), var(--gehrung) 0, 100% 0, 100% 100%, 0 100%); }
+.einstieg-kopie { display: none; }
+.einstieg-titel, .einstieg-text, .einstieg-ort { position: relative; z-index: 2; }
+.einstieg { padding-block-end: calc(var(--gehrung) + 1.5rem); }
+@media (width >= 48rem) {
+  .einstieg { --titel-oben: 5.5rem; }
+  .einstieg-titel { font-size: 10.4cqw; margin-inline: var(--rand) 0; inline-size: calc(72cqw - var(--rand)); max-inline-size: none; }
+  .einstieg-text, .einstieg-ort { margin-inline-start: var(--rand); }
+  .einstieg-tafel { inset-inline-start: auto; inset-block: 0; inline-size: 44cqw; block-size: auto; z-index: 3; }
+  .einstieg-tafel .ersatz { aspect-ratio: auto; clip-path: polygon(var(--gehrung) 0, 100% 0, 100% 100%, 0 100%, 0 var(--gehrung)); }
+  .einstieg-tafel { clip-path: polygon(12cqw 0, 100% 0, 100% calc(100% - 9cqw), calc(100% - 9cqw) 100%, 0 100%, 0 12cqw); }
+  .einstieg-tafel .ersatz { clip-path: none; }
+  .einstieg-kopie { display: block; position: absolute; inset-block-start: var(--titel-oben); inset-inline-start: calc(var(--rand) - 56cqw); inline-size: calc(72cqw - var(--rand)); color: var(--eiche); z-index: 4; pointer-events: none; text-transform: uppercase; font-family: var(--schrift-kopf); font-weight: 800; font-size: 10.4cqw; line-height: 0.86; margin: 0; }
+  .einstieg-text { max-inline-size: 24rem; }
+}
+
+/* Leistungen: drei große versetzte Zeilen */
+.leistungen-kopf { font-size: clamp(3rem, 9vw, 6.5rem); max-inline-size: 14ch; margin-block-end: 2.5rem; }
+.leistungen-kopf, .holz-titel { position: relative; }
+.zeilen { display: grid; gap: 1.25rem; list-style: none; margin: 0; padding: 0; }
+.zeile {
+  position: relative; display: grid; gap: 1rem; padding: 1.5rem 1.25rem 1.75rem; background: var(--eiche); color: var(--kreide);
+  clip-path: polygon(0 0, calc(100% - 2.2rem) 0, 100% 2.2rem, 100% 100%, 2.2rem 100%, 0 calc(100% - 2.2rem));
+}
+.zeile h3 { font-size: clamp(2.6rem, 8vw, 4.6rem); }
+.zeile p { max-inline-size: 34rem; }
+.zeile .ersatz { --format: 16 / 9; }
+.zeile:nth-child(2) { background: var(--eiche-2); }
+@media (width >= 48rem) {
+  .zeilen { gap: 1.75rem; }
+  .zeile { grid-template-columns: 1.15fr 1fr; align-items: center; gap: 2.5rem; padding: 2.5rem 2.5rem 2.75rem 3.5rem; inline-size: 82%; }
+  .zeile:nth-child(2) { margin-inline-start: 18%; }
+  .zeile:nth-child(3) { margin-inline-start: 9%; }
+  .zeile:nth-child(2) .ersatz { order: -1; }
+  .zeile .ersatz { --format: 4 / 3; }
+}
+
+/* Ablauf: Abschnitt bleibt stehen */
+.ablauf { background: var(--eiche); color: var(--kreide); position: relative; }
+.ablauf-buehne { padding: 3rem var(--rand) 2rem; display: grid; align-content: center; gap: 1.25rem; position: relative; }
+.ablauf-schritte { display: grid; }
+.ablauf-kopf { font-size: clamp(2.6rem, 7vw, 5rem); }
+.schritt { display: grid; gap: 0.5rem 2rem; grid-template-columns: auto 1fr; align-items: start; padding: 1.25rem 0; border-block-start: 4px solid var(--kupfer); clip-path: none; }
+.schritt-ziffer { font-family: var(--schrift-kopf); font-weight: 800; font-size: clamp(7rem, 24vw, 15rem); line-height: 0.78; color: var(--kupfer); grid-row: span 2; }
+.schritt h3 { font-size: clamp(2.2rem, 6vw, 4rem); }
+.schritt p { max-inline-size: 32rem; }
+.ablauf-anzeige { display: none; }
+.bewegt .ablauf-anzeige { display: flex; gap: 0.4rem; }
+.ablauf-anzeige i { display: block; flex: 1; block-size: 0.7rem; background: var(--eiche-2); clip-path: polygon(0.5rem 0, 100% 0, calc(100% - 0.5rem) 100%, 0 100%); transition: background-color 300ms; }
+.ablauf-buehne:has([data-schritt]:nth-child(1).ist-aktiv) .ablauf-anzeige i:nth-child(-n+1),
+.ablauf-buehne:has([data-schritt]:nth-child(2).ist-aktiv) .ablauf-anzeige i:nth-child(-n+2),
+.ablauf-buehne:has([data-schritt]:nth-child(3).ist-aktiv) .ablauf-anzeige i:nth-child(-n+3),
+.ablauf-buehne:has([data-schritt]:nth-child(4).ist-aktiv) .ablauf-anzeige i:nth-child(-n+4) { background: var(--kupfer); }
+.bewegt .schritt { align-self: center; border-block-start: 0; }
+.bewegt .ablauf-buehne { align-content: center; }
+@media (width >= 48rem) {
+  .ablauf-buehne { padding-inline: var(--rand); max-inline-size: calc(var(--max) + 2 * var(--rand)); margin-inline: auto; }
+  .schritt { grid-template-columns: minmax(12rem, 22rem) 1fr; gap: 0.5rem 3rem; padding-block: 2rem; }
+  .schritt-ziffer { font-size: clamp(11rem, 30vw, 24rem); }
+}
+@media (width < 48rem) and (height < 44rem) { .schritt-ziffer { font-size: 6.5rem; } }
+/* Gehrung zum Ablauf */
+.ablauf::after { content: ""; position: absolute; inset-inline: 0; inset-block-end: 0; block-size: 0; }
+
+/* Holz und Werkstatt */
+.holz-titel { font-size: clamp(3.6rem, 12vw, 9.5rem); max-inline-size: 11ch; margin-block-end: -1.4rem; z-index: 2; }
+.holz-raster { display: grid; gap: 1.5rem; position: relative; }
+.holz-raster .ersatz { --format: 4 / 3; }
+.holz-text { display: grid; gap: 1rem; max-inline-size: 36rem; }
+.holz-text h3 { font-size: clamp(1.9rem, 5vw, 2.6rem); }
+@media (width >= 48rem) {
+  .holz-titel { margin-block-end: -3.2rem; }
+  .holz-raster { grid-template-columns: 1.3fr 1fr; gap: 3rem; align-items: start; }
+  .holz-raster .ersatz:first-child { --format: 5 / 4; }
+  .holz-spalte { display: grid; gap: 2rem; margin-block-start: 5rem; }
+}
+
+/* Fragen */
+.fragen-kopf { font-size: clamp(2.8rem, 8vw, 5.5rem); margin-block-end: 2rem; }
+.fragen-liste { max-inline-size: 52rem; margin-inline-start: auto; }
+.fragen-liste details { border-block-start: 3px solid var(--eiche); }
+.fragen-liste details:last-child { border-block-end: 3px solid var(--eiche); }
+.fragen-liste summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 1rem 0; min-block-size: 3.25rem; font-family: var(--schrift-kopf); font-weight: 800; text-transform: uppercase; font-size: clamp(1.5rem, 4vw, 2rem); line-height: 1; }
+.fragen-liste summary::-webkit-details-marker { display: none; }
+.fragen-liste summary::after { content: ""; flex: none; inline-size: 1.1rem; block-size: 1.1rem; background: var(--kupfer); clip-path: polygon(0 0, 100% 50%, 0 100%); transition: transform 200ms; }
+.fragen-liste details[open] summary::after { transform: rotate(90deg); }
+@media (prefers-reduced-motion: reduce) { .fragen-liste summary::after { transition: none; } }
+.fragen-liste details p { padding-block-end: 1.25rem; max-inline-size: 38rem; }
+
+/* Aufruf */
+.aufruf-titel { font-size: clamp(3.4rem, 11vw, 8.5rem); max-inline-size: 12ch; }
+.aufruf-text { margin-block: 1.5rem 2rem; max-inline-size: 30rem; font-size: 1.125rem; }
+.aufruf-kontakt { margin-block-start: 2rem; font-weight: 600; color: var(--span); }
+.aufruf-kupfer { display: block; inline-size: min(100%, 18rem); block-size: 6px; background: var(--kupfer); margin-block-end: 1.5rem; }
+
+/* Fuß */
+.fuss { background: var(--eiche-2); color: var(--kreide); padding: 2.5rem var(--rand) 2.5rem; display: grid; gap: 1.25rem; }
+.fuss nav ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.25rem 1.5rem; }
+.fuss a { display: inline-block; padding-block: 0.6rem; }
+.fuss-name { font-family: var(--schrift-kopf); font-weight: 800; font-size: 1.8rem; text-transform: uppercase; }
+.fuss-klein { font-size: 0.9rem; color: var(--span); }
+
+img, svg, video, canvas { display: block; max-inline-size: 100%; block-size: auto; }
+
+/* Textseiten (Impressum, Datenschutz, Anfrage, 404) */
+.seite { background: var(--span); color: var(--eiche); padding: calc(var(--gehrung) + 1rem) var(--rand) calc(var(--gehrung) + 2rem); min-block-size: 70svh; }
+.seite-innen { max-inline-size: 46rem; margin-inline: auto; display: grid; gap: 1rem; }
+.seite h1 { font-size: clamp(2.2rem, 7.5vw, 3.6rem); hyphens: auto; overflow-wrap: break-word; margin-block-end: 1rem; }
+.seite h2 { font-size: clamp(1.7rem, 4vw, 2.3rem); margin-block-start: 1.25rem; }
+.seite a:not(.knopf) { text-decoration-thickness: 2px; text-underline-offset: 3px; }
+.seite .knopf { justify-self: start; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}
+.fragen-liste details:not([open]) > p { display: none; }
+
+/* Seite Leistungen */
+.leist-einstieg { min-block-size: 0; padding-block-end: calc(var(--gehrung) + 2rem); }
+.leist-titel { font-size: clamp(3.6rem, 16vw, 9rem); line-height: 0.86; margin-inline: var(--rand); }
+.leist-einstieg .einstieg-text { margin-block-start: 1.5rem; }
+.leist-raster { display: grid; gap: 2rem; }
+.leist-name { font-size: clamp(3rem, 9vw, 6rem); margin-block-end: 1.25rem; }
+.leist-text h3 { font-size: 1.75rem; margin-block: 1.75rem 0.5rem; }
+.leist-text p { max-inline-size: 34rem; }
+.leist-liste { margin: 0; padding-inline-start: 1.25rem; max-inline-size: 34rem; }
+.leist-liste li { margin-block: 0.25rem; }
+.leist-link { color: inherit; font-weight: 600; text-decoration: underline; text-decoration-color: var(--kupfer); text-decoration-thickness: 3px; text-underline-offset: 0.25em; }
+.dunkel .leist-link { text-decoration-color: var(--kupfer); }
+.leist { padding-block-start: calc(var(--gehrung) * 0.4 + 1.5rem); }
+.leist .ersatz { --format: 4 / 3; }
+/* Bildersatz bleibt auf jeder Fläche als Bildfläche erkennbar: Grundton im Kontrast zur Fläche */
+.hell .ersatz[data-form="2"] { background: var(--eiche-2); }
+.hell .ersatz[data-form="2"]::before { background: var(--span-2); }
+.hell-2 .ersatz[data-form="3"] { background: var(--eiche-2); }
+.hell-2 .ersatz[data-form="3"]::before { background: var(--span); }
+.dunkel .ersatz { background: var(--span-2); box-shadow: 0 0 0 2px var(--span); }
+.dunkel .ersatz[data-form="4"]::before { background: var(--eiche-2); }
+.dunkel .ersatz[data-form="4"]::after { background: var(--span); }
+@media (width >= 48rem) {
+  .leist-raster { grid-template-columns: 1.1fr 1fr; align-items: center; gap: 3rem; }
+  .leist:nth-of-type(even) .ersatz { order: -1; }
+}
+
+/* Anfrageformular */
+.anfrage { display: grid; gap: 1.25rem; }
+.feld { display: grid; gap: 0.35rem; }
+.feld label { font-weight: 600; }
+.feld input, .feld select, .feld textarea {
+  inline-size: 100%; min-block-size: 3.25rem; padding: 0.7rem 0.9rem; font: inherit; color: var(--eiche);
+  background: var(--kreide); border: 3px solid var(--eiche); border-radius: 0;
+}
+.feld textarea { min-block-size: 9rem; resize: vertical; }
+.feld [aria-invalid] { border-color: var(--kupfer); border-inline-start-width: 12px; }
+.feld-hilfe { font-size: 0.9rem; }
+.feld-fehler { font-weight: 600; padding: 0.4rem 0.7rem; background: var(--eiche); color: var(--kreide); border-inline-start: 6px solid var(--kupfer); }
+.anfrage .knopf { justify-self: start; border: 0; cursor: pointer; min-block-size: 3.25rem; }

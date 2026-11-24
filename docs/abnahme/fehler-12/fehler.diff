@@ -1,0 +1,12 @@
+diff --git a/beispiel/src/layouts/Grund.astro b/beispiel/src/layouts/Grund.astro
+index 3a0ffbd..12624a1 100644
+--- a/beispiel/src/layouts/Grund.astro
++++ b/beispiel/src/layouts/Grund.astro
+@@ -28,6 +28,7 @@ const { titel, beschreibung = "Tischlerei Kernholz baut Möbel nach Maß, übern
+     <meta name="description" content={beschreibung} />
+     <meta name="theme-color" content="#1E1813" />
+     <title>{titel}</title>
++    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" />
+   </head>
+   <body>
+     <a class="sprung" href="#inhalt">Zum Inhalt</a>

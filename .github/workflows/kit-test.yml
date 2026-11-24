@@ -1,0 +1,43 @@
+# Nur im Kit-Repo: Kit-Test und die festen Prüfungen am Beispielprojekt. In Projekten aus der Vorlage startet kein Job.
+name: Kit-Test
+on:
+  push:
+  pull_request:
+jobs:
+  kit-test:
+    if: github.repository == 'El-Chami-Labs/dev-agents'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Browser für den Layout-Test
+        run: npm install --no-save playwright@1.63.0 && npx playwright install --with-deps chromium
+      - name: Kit-Test
+        run: node --test scripts/kit-test/*.test.mjs
+      - name: Aufräum-Wächter
+        run: node scripts/aufraeumen.mjs
+  beispiel:
+    if: github.repository == 'El-Chami-Labs/dev-agents'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    defaults:
+      run:
+        working-directory: beispiel
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci
+      - run: node scripts/pakete.mjs .
+      - run: npm run build
+      - run: npm run typen
+      - run: npm run lint
+      - run: npm run test
+      - run: node scripts/fremdquellen.mjs dist
+      - run: node scripts/fakten.mjs dist
+      - run: npx playwright install --with-deps chromium
+      - run: npm run e2e

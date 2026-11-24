@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="data:," />
+    <title>Beispiel: Szene weit unten auf einer langen Seite</title>
+    <!-- KOPF_SKRIPT aus bewegung.mjs, vor allem anderen -->
+    <script>
+      (function () {
+        var h = document.documentElement;
+        if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        h.classList.add("bewegt");
+        setTimeout(function () {
+          if (!h.classList.contains("bewegung-bereit"))
+            h.classList.remove("bewegt");
+        }, 3000);
+      })();
+    </script>
+    <!-- Kit-Test: Bibliotheken gebündelt und minifiziert wie im Build eines Projekts (min/), über eine Import-Map -->
+    <script type="importmap">
+      {
+        "imports": {
+          "motion": "/min/motion.mjs",
+          "lenis": "/min/lenis.mjs",
+          "three": "/min/three.mjs",
+          "three/addons/": "/min/three-addons/"
+        }
+      }
+    </script>
+    <link rel="stylesheet" href="/bausteine/bewegung.css" />
+    <style>
+      body {
+        margin: 0;
+        font-family: system-ui, sans-serif;
+        line-height: 1.5;
+        color: #1d1b16;
+        background: #f6f1e7;
+      }
+      main > section {
+        padding: clamp(3rem, 2rem + 5vw, 7rem) 1.25rem;
+        max-width: 70rem;
+        margin-inline: auto;
+      }
+      h1 {
+        font-size: clamp(2.25rem, 1.5rem + 4vw, 5rem);
+        line-height: 1.05;
+        margin: 0 0 1rem;
+        max-width: 14ch;
+      }
+      h2 {
+        font-size: clamp(1.5rem, 1.2rem + 1.5vw, 2.5rem);
+        margin: 0 0 1rem;
+      }
+      p {
+        max-width: 60ch;
+        margin: 0 0 1rem;
+      }
+      .einstieg {
+        min-height: 80svh;
+        display: grid;
+        align-content: center;
+      }
+      .karten {
+        display: grid;
+        gap: 1.25rem;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+      }
+      .karte {
+        background: #fff;
+        border-radius: 1rem;
+        padding: 1.5rem;
+      }
+      .zahlen {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        font-size: clamp(2rem, 1.5rem + 2vw, 3.5rem);
+        font-weight: 700;
+      }
+      .zahlen small {
+        display: block;
+        font-size: 1rem;
+        font-weight: 400;
+      }
+      .bildrahmen {
+        aspect-ratio: 16 / 9;
+        border-radius: 1rem;
+      }
+      .flaeche {
+        background: radial-gradient(
+          circle at 30% 30%,
+          #f2c46d,
+          #b5651d 55%,
+          #3b2412
+        );
+      }
+      [data-szene] {
+        --szene-format: 4 / 3;
+        border-radius: 1rem;
+        max-width: 36rem;
+      }
+      [data-szene-ersatz] {
+        background: radial-gradient(
+          circle at 40% 35%,
+          #f6d48b,
+          #c27c2c 50%,
+          #4a2c12
+        );
+      }
+      [data-bewegung="stehen"] [data-buehne] {
+        align-items: center;
+      }
+      [data-schritt] {
+        background: #1d1b16;
+        color: #f6f1e7;
+        border-radius: 1rem;
+        padding: 2rem;
+        margin-block-end: 1rem;
+      }
+      .chronik {
+        min-height: 12500px;
+      }
+      footer {
+        padding: 3rem 1.25rem;
+        text-align: center;
+      }
+      a {
+        color: inherit;
+        display: inline-block;
+        padding: 0.75rem 0;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="einstieg">
+        <h1 data-bewegung="woerter">Honig aus dem eigenen Tal</h1>
+        <p data-bewegung="gleiten">
+          Ruhige Bewegung, die etwas zeigt: Der Text kommt Wort für Wort,
+          Inhalte gleiten herein.
+        </p>
+      </section>
+      <section>
+        <h2 data-bewegung="maskieren"><span>Was wir anbieten</span></h2>
+        <div class="karten" data-bewegung-gruppe>
+          <article class="karte" data-bewegung="gleiten">
+            <h3>Blütenhonig</h3>
+            <p>Aus Frühjahr und Sommer.</p>
+          </article>
+          <article class="karte" data-bewegung="gleiten">
+            <h3>Waldhonig</h3>
+            <p>Dunkel und kräftig.</p>
+          </article>
+          <article class="karte" data-bewegung="gleiten">
+            <h3>Führungen</h3>
+            <p>Ein Nachmittag am Bienenstand.</p>
+          </article>
+        </div>
+      </section>
+      <section>
+        <div class="zahlen">
+          <p>
+            <span data-bewegung="zaehlen">1.250</span
+            ><small>Gläser im Jahr</small>
+          </p>
+          <p><span data-bewegung="zaehlen">38</span><small>Völker</small></p>
+          <p>
+            <span data-bewegung="zaehlen">98 %</span
+            ><small>aus der Region</small>
+          </p>
+        </div>
+      </section>
+      <section>
+        <div class="bildrahmen" data-bewegung="ausschnitt">
+          <div
+            class="flaeche"
+            role="img"
+            aria-label="Wabe im Licht (Platzhalter: Foto folgt)"
+          ></div>
+        </div>
+      </section>
+      <section class="chronik">
+        <h2>Chronik</h2>
+        <p>
+          Eine lange Seite: Die Bühne liegt über 12.000 Pixel unter dem
+          Einstieg. Die Ladezeit der Szene zählt erst, wenn sie nahe ist.
+        </p>
+      </section>
+      <section>
+        <h2>Die Szene im Raum</h2>
+        <p>
+          Die Szene lädt erst, wenn sie gebraucht wird; ohne WebGL steht die
+          gestaltete Fläche.
+        </p>
+        <div data-szene><div data-szene-ersatz></div></div>
+      </section>
+      <section data-bewegung="stehen">
+        <div data-buehne>
+          <div data-schritt>
+            <h2>Erst schwärmen</h2>
+            <p>Im Frühjahr ziehen die Völker aus.</p>
+          </div>
+          <div data-schritt>
+            <h2>Dann sammeln</h2>
+            <p>Den Sommer über tragen sie Nektar ein.</p>
+          </div>
+          <div data-schritt>
+            <h2>Zuletzt ernten</h2>
+            <p>Im August schleudern wir den Honig.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer><a href="/kontakt/">Kontakt</a></footer>
+    <script type="module">
+      import { bewegungStarten } from "/bausteine/bewegung.mjs";
+      import { szeneStarten } from "/bausteine/szene-3d.mjs";
+      bewegungStarten({ sanft: true });
+      szeneStarten(document.querySelector("[data-szene]"));
+    </script>
+  </body>
+</html>

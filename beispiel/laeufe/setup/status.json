@@ -1,0 +1,47 @@
+{
+  "art": "setup",
+  "branch": "setup",
+  "start": "2026-11-05T22:37:48.653Z",
+  "phase": "fertig",
+  "freigabe": "2026-11-05T22:37:48.699Z",
+  "fragen": 0,
+  "phasen": [
+    {
+      "name": "fragen",
+      "start": "2026-11-05T22:37:48.653Z",
+      "ende": "2026-11-05T22:37:48.699Z"
+    },
+    {
+      "name": "bauen",
+      "start": "2026-11-05T22:37:48.699Z",
+      "ende": "2026-11-05T22:37:48.735Z"
+    },
+    {
+      "name": "gestaltung",
+      "start": "2026-11-05T22:37:48.735Z",
+      "ende": "2026-11-05T22:46:30.390Z"
+    },
+    {
+      "name": "wahl",
+      "start": "2026-11-05T22:46:30.390Z",
+      "ende": "2026-11-05T22:46:52.760Z"
+    },
+    {
+      "name": "bauen",
+      "start": "2026-11-05T22:46:52.760Z",
+      "ende": "2026-11-05T22:56:35.549Z"
+    }
+  ],
+  "features": [
+    {
+      "name": "Gestaltung übertragen",
+      "status": "fertig",
+      "bauZeit": "2026-11-05T22:47:06.563Z",
+      "fertigZeit": "2026-11-05T22:56:35.445Z"
+    }
+  ],
+  "offen": [],
+  "annahmen": [],
+  "pr": "simuliert: laeufe/setup/report.md",
+  "ende": "2026-11-05T22:56:35.549Z"
+}

@@ -1,0 +1,40 @@
+{
+  "art": "lauf",
+  "branch": "lauf-1",
+  "start": "2026-11-05T22:56:47.851Z",
+  "phase": "fertig",
+  "freigabe": "2026-11-05T22:56:47.883Z",
+  "fragen": 0,
+  "phasen": [
+    {
+      "name": "fragen",
+      "start": "2026-11-05T22:56:47.851Z",
+      "ende": "2026-11-05T22:56:47.883Z"
+    },
+    {
+      "name": "bauen",
+      "start": "2026-11-05T22:56:47.883Z",
+      "ende": "2026-11-05T23:12:26.048Z"
+    }
+  ],
+  "features": [
+    {
+      "name": "Leistungen",
+      "status": "fertig",
+      "bauZeit": "2026-11-05T22:56:47.914Z",
+      "fertigZeit": "2026-11-05T23:05:35.003Z"
+    },
+    {
+      "name": "Anfrageformular",
+      "status": "fertig",
+      "bauZeit": "2026-11-05T23:05:35.065Z",
+      "fertigZeit": "2026-11-05T23:11:58.857Z"
+    }
+  ],
+  "offen": [
+    "kann: Bildersatz-Farbregel gilt auch auf der Startseite (Karte Möbel nach Maß farblich umgekehrt, gut erkennbar)"
+  ],
+  "annahmen": [],
+  "pr": "simuliert: laeufe/lauf-1/report.md",
+  "ende": "2026-11-05T23:12:26.048Z"
+}

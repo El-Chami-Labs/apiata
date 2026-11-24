@@ -1,0 +1,16 @@
+$ node scripts/status.mjs start lauf --features "Testfeature" && node scripts/status.mjs freigabe
+START wegwerf-lauf (laeufe/wegwerf-lauf/status.json)
+freigabe ok: Phase bauen
+
+# 1) Sitzung will anhalten, Lauf in Phase „bauen“, kein Pull Request:
+{"decision":"block","reason":"Lauf „wegwerf-lauf“ ist nicht fertig (Phase bauen, offen: Testfeature). Weiterarbeiten bis zum Pull Request; Unklares als Annahme festhalten. Am Ende: node scripts/status.mjs pr <link>."}
+
+# 2) Weitergearbeitet (status.json geändert), will wieder anhalten (stop_hook_active=true):
+{"decision":"block","reason":"Lauf „wegwerf-lauf“ ist nicht fertig (Phase bauen, offen: Testfeature). Weiterarbeiten bis zum Pull Request; Unklares als Annahme festhalten. Am Ende: node scripts/status.mjs pr <link>."}
+
+# 3) Ohne Fortschritt erneut anhalten (Schutz gegen Endlosschleife, Stand bleibt für /autopilot-fortsetzen):
+(keine Ausgabe = anhalten erlaubt)
+
+# 4) Pull Request eingetragen, anhalten:
+pr ok: Phase fertig
+(keine Ausgabe = anhalten erlaubt)

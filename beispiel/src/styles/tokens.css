@@ -1,0 +1,23 @@
+/* Vorschlag B · Zuschnitt: eigene Tokens */
+:root {
+  --eiche: #1e1813; /* Räuchereiche, dunkle Flächen */
+  --eiche-2: #2d241b; /* helleres dunkles Holz, nur für Flächen neben Räuchereiche */
+  --span: #efe2c2; /* Hobelspan, helle Flächen */
+  --span-2: #dcc994; /* dunklerer Span, Flächen */
+  --kupfer: #b5651d; /* nur Linien, große Ziffern, Hauptaktion */
+  --kreide: #faf7f0; /* Text auf dunkel */
+
+  --schrift-kopf: "Big Shoulders Display Variable", "Arial Narrow", Impact, sans-serif;
+  --schrift-text: "IBM Plex Sans", system-ui, sans-serif;
+
+  --rand: 1.25rem;
+  --gehrung: clamp(2.5rem, 9vw, 7rem); /* 45-Grad-Schnitt: gleiche Länge waagerecht und senkrecht */
+  --leiste: 4.5rem;
+  --max: 74rem;
+}
+@media (width >= 48rem) {
+  :root {
+    --rand: clamp(2rem, 5vw, 5rem);
+    --leiste: 4rem;
+  }
+}

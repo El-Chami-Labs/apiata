@@ -1,0 +1,33 @@
+{
+  "kit": [
+    "CLAUDE.md",
+    "KIT-VERSION",
+    "kit-manifest.json",
+    ".claude/settings.json",
+    ".claude/agents",
+    ".claude/hooks",
+    ".claude/skills",
+    ".github/workflows/pruefung.yml",
+    "scripts",
+    "vorlagen",
+    "docs/ANLEITUNG.md",
+    "docs/pruefstufen.md",
+    "docs/GESTALTUNG-RICHTUNGEN.md",
+    "docs/gestaltung",
+    "docs/design-bibliothek"
+  ],
+  "zusammenfuehren": ["docs/pakete-freigegeben.md"],
+  "nurKit": [
+    "README.md",
+    "CHANGELOG.md",
+    "kit-erledigt.json",
+    "beispiel",
+    "scripts/kit-test",
+    ".github/workflows/kit-test.yml",
+    "docs/annahmen.md",
+    "docs/baustand.md",
+    "docs/wortzahl.json",
+    "docs/abnahme"
+  ],
+  "projekt": ["projekt.json", "kit-feedback.md", "docs/design-system.md", "docs/design-richtungen", "inhalte", "src", "public", "tests", "laeufe"]
+}

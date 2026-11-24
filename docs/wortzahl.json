@@ -1,0 +1,35 @@
+{
+  "regeltexte": [
+    "CLAUDE.md",
+    ".claude/agents",
+    ".claude/skills",
+    "docs/pruefstufen.md",
+    "docs/GESTALTUNG-RICHTUNGEN.md",
+    "docs/gestaltung/stufen.md"
+  ],
+  "material": [
+    ".claude/skills/frontend-design",
+    "docs/gestaltung/sperrliste.md",
+    "docs/gestaltung/achsen.md",
+    "docs/design-bibliothek",
+    "vorlagen"
+  ],
+  "grenzen": {
+    "CLAUDE.md": 1500,
+    "rolle": 500,
+    "gesamt": 8000,
+    "lesebudget": 3025,
+    "projektdateien": 1100
+  },
+  "altlasten": [
+    "früher",
+    "bisher",
+    "nicht mehr",
+    "entfällt",
+    "seit Version",
+    "statt wie bisher",
+    "veraltet",
+    "wichtig:",
+    "bitte beachte"
+  ]
+}

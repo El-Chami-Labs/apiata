@@ -1,0 +1,12 @@
+# Bauplan: maison-seventy-seven
+Stufe 3 · aus den Screenshots vom 29.10.2026 (390 und 1280 px) · Inspiration, kein Zwang: nicht dieselbe Seite nachbauen.
+
+- Kopfzeile und Navigation: Cremefarbenes Band mit Schreibschrift-Logo links, vier gesperrten Versal-Links mittig und einem eckigen, rosébraun gefüllten Knopf rechts. Am Handy Logo links und ein kleines rosé Quadrat mit Menü-Symbol rechts; die Kopfzeile steht nur oben.
+- Einstieg: Bildschirmhohe Sandfläche mit weichem Schattenspiel, links eine große Serifenüberschrift in Versalien über zwei Zeilen (die zweite kursiv), darunter eine kursive Unterzeile und ein kleiner Textlink mit Pfeil. Am Handy ist alles zentriert und statt des Links steht ein dünner Pfeil nach unten.
+- Abfolge der Abschnitte: geteilter Abschnitt mit Foto links und dunkler Olivfläche rechts (großer Absatz, Link, Bild in Pillenform) → übergroßer Versaltitel auf Creme → drei Bereichszeilen mit schmaler Textspalte und großem Bild, Hintergrund wechselt Creme, Oliv, Sand → rosé Band mit einem einzigen Link → Zitat über einem Vollbild-Foto → dunkle Fußzeile mit Adresse, Zeiten, Anmeldefeld und Zeichen → schmale helle Leiste mit drei Netzwerk-Links.
+- Raster: Volle Breite ohne Rand; Teilung erst halb und halb, dann etwa ein Drittel Text zu zwei Dritteln Bild, Text oben links in der Spalte. Am Handy einspaltig, Text immer vor dem Bild, Bilder in voller Breite.
+- Knopf-Stil: Kaum Knöpfe; fast alle Aktionen sind kleine Serifen-Textlinks mit schrägem Pfeil. Die Buchungsaktion steht als eckiger gefüllter Knopf in der Kopfzeile und noch einmal als ganzes rosé Band zwischen Inhalt und Zitat.
+- Bilder: Große, ruhige Fotos (Raum, Produkte von oben, Pflanzen, Nahaufnahme) füllen ganze Flächen randlos; eines sitzt in einer liegenden Pillenform. Wo kein Foto steht, tragen getönte Vollflächen und große Serifenschrift.
+- Besonderheiten: Jeder Abschnitt hat seine eigene Hintergrundfarbe, die Grenzen sind harte Kanten ohne Abstand. Je Bereich nur Titel, Link und ein kurzer Absatz in kleiner Schrift, umgeben von viel Leerraum.
+- Bewegung (aus Aufnahmen und Notizen, soweit erkennbar): aus den Standbildern keine Bewegung erkennbar; Farbwechsel je Abschnitt ersetzt Bewegung, höchstens sanftes Einblenden.
+- Übertragbare Idee: Bereiche als Zeilen aus schmaler Textspalte und großem Bild, deren Hintergrundfarbe von Zeile zu Zeile wechselt, ersetzen Trennlinien und Karten.

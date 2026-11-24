@@ -1,0 +1,9 @@
+START wegwerf-frage (laeufe/wegwerf-frage/status.json)
+# Fragenblock (vor der Freigabe): Frage mit Vorschlag
+(keine Ausgabe = erlaubt)
+
+# Frage ohne Vorschlag
+{"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":"Jede Frage braucht eine Option mit „(Vorschlag)“ im Text: Farbe"}}
+freigabe ok: Phase bauen
+# Rückfrage nach der Freigabe
+{"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":"Ahmads Antworten sind die Freigabe. Keine Rückfrage bis zum Pull Request: Unklares als Annahme festhalten (node scripts/status.mjs annahme \"…\")."}}

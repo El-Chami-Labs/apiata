@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="data:," />
+    <title>
+      Gegenbeispiel: Bewegung gegen die Bauregeln (Kit-Test, absichtlich
+      fehlerhaft)
+    </title>
+    <script type="importmap">
+      {
+        "imports": {
+          "lenis": "/min/lenis.mjs",
+          "three": "/min/three.mjs"
+        }
+      }
+    </script>
+    <style>
+      body {
+        margin: 0;
+        font-family: system-ui, sans-serif;
+        line-height: 1.5;
+      }
+      section {
+        padding: 4rem 1.25rem;
+        min-height: 70svh;
+      }
+      /* Fehler: ohne JavaScript und bei „Bewegung reduzieren“ unsichtbar */
+      .einblenden {
+        opacity: 0;
+        transition: opacity 0.6s;
+      }
+      .einblenden.da {
+        opacity: 1;
+      }
+      /* Fehler: bewegt die Höhe (Layout-Sprung) */
+      @keyframes aufklappen {
+        from {
+          height: 0;
+        }
+        to {
+          height: 12rem;
+        }
+      }
+      .banner {
+        overflow: hidden;
+        background: #333;
+        color: #fff;
+        animation: aufklappen 0.8s 0.8s both;
+      }
+      /* Fehler: läuft auch bei „Bewegung reduzieren“ */
+      @keyframes drehen {
+        to {
+          transform: rotate(1turn);
+        }
+      }
+      .drehen {
+        display: inline-block;
+        animation: drehen 3s linear infinite;
+      }
+      [data-szene] {
+        height: 20rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="banner"><p>Angebot der Woche</p></div>
+    <main>
+      <section>
+        <h1 class="einblenden">Honig aus dem Tal</h1>
+        <p class="einblenden">Text, der ohne JavaScript fehlt.</p>
+        <span class="drehen">✺</span>
+      </section>
+      <section>
+        <h2>Mehr</h2>
+        <p>Abschnitt</p>
+      </section>
+      <section>
+        <h2>Szene</h2>
+        <div data-szene></div>
+      </section>
+    </main>
+    <script type="module">
+      import * as THREE from "three"; // Fehler: 3D sofort geladen, auch weit unten und ohne Ersatz
+      import Lenis from "lenis";
+      new Lenis({ autoRaf: true }); // Fehler: sanftes Scrollen auch bei „Bewegung reduzieren“
+      const ende = performance.now() + 450;
+      while (performance.now() < ende); // Fehler: lange Aufgabe
+      for (const el of document.querySelectorAll(".einblenden"))
+        el.classList.add("da");
+      const el = document.querySelector("[data-szene]");
+      const renderer = new THREE.WebGLRenderer();
+      renderer.setSize(el.clientWidth, el.clientHeight);
+      el.append(renderer.domElement);
+      const szene = new THREE.Scene();
+      const kamera = new THREE.PerspectiveCamera(
+        50,
+        el.clientWidth / el.clientHeight,
+        0.1,
+        10,
+      );
+      kamera.position.z = 3;
+      const wuerfel = new THREE.Mesh(
+        new THREE.BoxGeometry(),
+        new THREE.MeshNormalMaterial(),
+      );
+      szene.add(wuerfel);
+      renderer.setAnimationLoop(() => {
+        wuerfel.rotation.y += 0.01;
+        renderer.render(szene, kamera);
+      });
+    </script>
+  </body>
+</html>

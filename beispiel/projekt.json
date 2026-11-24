@@ -1,0 +1,14 @@
+{
+  "name": "Tischlerei Kernholz",
+  "art": "website",
+  "pruefstufe": 3,
+  "gestaltungsstufe": 4,
+  "fotos": "folgen",
+  "worker": "kernholz-beispiel",
+  "subdomain": "beispiel",
+  "produktionsbranch": "main",
+  "hauptaktion": {
+    "selektor": "a[href=\"/anfrage/\"]"
+  },
+  "dreiD": false
+}

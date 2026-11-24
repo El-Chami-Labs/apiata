@@ -1,0 +1,12 @@
+diff --git a/beispiel/src/logik/anfrage.ts b/beispiel/src/logik/anfrage.ts
+index 8dd521c..de378d5 100644
+--- a/beispiel/src/logik/anfrage.ts
++++ b/beispiel/src/logik/anfrage.ts
+@@ -23,7 +23,6 @@ const EMAIL = /^[^\s@]+@[^\s@.]+(\.[^\s@.]+)+$/;
+ 
+ export function anfragePruefen(d: Anfrage): Fehler {
+   const f: Fehler = {};
+-  if (!d.name.trim()) f.name = "Bitte Ihren Namen angeben";
+   const mail = d.email.trim();
+   if (mail && !EMAIL.test(mail)) f.email = "Diese E-Mail-Adresse ist ungültig. Bitte prüfen Sie sie, zum Beispiel name@beispiel.de";
+   else if (!mail && !d.telefon.trim()) f.kontakt = "Bitte E-Mail-Adresse oder Telefonnummer angeben";

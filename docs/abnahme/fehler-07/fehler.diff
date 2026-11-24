@@ -1,0 +1,10 @@
+diff --git a/beispiel/src/pages/leistungen.astro b/beispiel/src/pages/leistungen.astro
+index 3213ec8..1c709b0 100644
+--- a/beispiel/src/pages/leistungen.astro
++++ b/beispiel/src/pages/leistungen.astro
+@@ -60,3 +60,5 @@ const leistungen = [
+     </section>
+   ))}
+ </Grund>
++
++<p>Seit 1998 haben wir über 300 zufriedene Kunden in der Region beraten. Rufen Sie an: 0341 2345678.</p>

@@ -1,0 +1,128 @@
+---
+import Grund from "../layouts/Grund.astro";
+import Ersatz from "../komponenten/Ersatz.astro";
+const leistungen = [
+  {
+    name: "Möbel nach Maß",
+    id: "moebel",
+    text: "Regal für die schiefe Nische, Tisch für die lange Küche, Bett mit Stauraum: Wir bauen das Möbel für genau die Stelle, an der es stehen soll.",
+    form: 2 as const,
+    motiv: "Einbauregal in Eiche, Detail der Gehrung",
+  },
+  {
+    name: "Innenausbau",
+    id: "innenausbau",
+    text: "Einbauschränke unter der Dachschräge, Türen, Vertäfelungen und Treppenverkleidungen. Wir passen jedes Teil an Ihre Wände an, nicht umgekehrt.",
+    form: 3 as const,
+    motiv: "Einbauschrank unter der Dachschräge",
+  },
+  {
+    name: "Reparatur und Restaurierung",
+    id: "reparatur",
+    text: "Der Stuhl vom Großvater, die Kommode mit dem losen Fuß: Wir prüfen, was tragen muss, bessern aus und erhalten, was erhalten werden kann.",
+    form: 4 as const,
+    motiv: "Restaurierte Kommode vor der Werkbank",
+  },
+];
+
+const schritte = [
+  { n: 1, titel: "Gespräch und Aufmaß", text: "Wir kommen zu Ihnen, hören zu und messen die Stelle aus, an der das Möbel stehen soll. Auch wenn die Wand nicht gerade ist." },
+  { n: 2, titel: "Entwurf", text: "Sie bekommen eine Zeichnung mit Holzart, Fugen und Beschlägen. Wir ändern so lange, bis sie zu Ihrem Alltag passt." },
+  { n: 3, titel: "Fertigung in der Werkstatt", text: "Zuschnitt, Fügen, Schleifen, Oberfläche: Jedes Teil entsteht in unserer Werkstatt in Platzhalter: Ort." },
+  { n: 4, titel: "Einbau", text: "Wir bringen das Möbel, bauen es ein, richten es aus und nehmen den Staub wieder mit." },
+];
+
+const fragen = [
+  { f: "Wie läuft eine Anfrage ab?", a: "Sie beschreiben Ihr Vorhaben in unserem Formular, gern mit einem Foto der Stelle. Wir melden uns und vereinbaren einen Termin für das Gespräch und das Aufmaß." },
+  { f: "Was kostet ein Möbel?", a: "Das hängt von Größe, Holz und Aufwand ab. Einen Preis nennen wir erst nach dem Aufmaß und dem Entwurf, damit er zu Ihrem Möbel passt. Platzhalter: Preisrahmen." },
+  { f: "Welche Hölzer verarbeiten Sie?", a: "Meist Eiche, Esche und Nussbaum, auf Wunsch auch andere Hölzer. Im Gespräch zeigen wir Ihnen Muster und erklären, was sich wofür eignet." },
+  { f: "Können Sie auch Erbstücke reparieren?", a: "Ja. Wir sehen uns das Stück an und sagen ehrlich, was sich lohnt und was nicht. Bitte schicken Sie uns vorab ein paar Fotos." },
+  { f: "Wo ist die Werkstatt, und wann sind Sie erreichbar?", a: "Die Werkstatt liegt in Platzhalter: Ort. Telefonisch erreichen Sie uns zu den Zeiten Platzhalter: Öffnungszeiten." },
+];
+
+const titel = "Tischlerei Kernholz: Möbel nach Maß, Innenausbau, Restaurierung";
+---
+
+<Grund titel={titel}>
+  <section class="einstieg" aria-labelledby="titel">
+    <h1 id="titel" class="einstieg-titel" data-bewegung="woerter">Wir schneiden zu, was es so nicht zu kaufen gibt.</h1>
+    <p class="einstieg-text">Tischlerei Kernholz baut Möbel nach Maß, übernimmt Innenausbau und bringt Erbstücke wieder in Form. Aus echtem Holz, bis auf den Millimeter.</p>
+    <p class="einstieg-ort">Werkstatt in Platzhalter: Ort</p>
+    <div class="einstieg-tafel"><Ersatz form={1} motiv="Werkbank mit frisch gehobelter Eiche" /><p class="einstieg-kopie" aria-hidden="true" data-bewegung="woerter">Wir schneiden zu, was es so nicht zu kaufen gibt.</p></div>
+  </section>
+
+  <section id="leistungen" class="flaeche hell" aria-labelledby="leistungen-titel">
+    <div class="innen">
+      <h2 id="leistungen-titel" class="leistungen-kopf" data-bewegung="woerter">Das schneiden wir für Sie zu</h2>
+      <ul class="zeilen">
+        {leistungen.map((l) => (
+          <li class="zeile">
+            <div>
+              <h3>{l.name}</h3>
+              <p>{l.text}</p>
+              <p><a class="leist-link" href={`/leistungen/#${l.id}`}>Mehr zu {l.name}</a></p>
+            </div>
+            <Ersatz form={l.form} motiv={l.motiv} />
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section id="ablauf" class="flaeche dunkel ablauf" style="padding:0" data-bewegung="stehen" aria-labelledby="ablauf-titel">
+    <div class="ablauf-buehne" data-buehne>
+      <h2 id="ablauf-titel" class="ablauf-kopf" data-bewegung="woerter">So entsteht Ihr Möbel</h2>
+      <div class="ablauf-anzeige" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+      <ol class="ablauf-schritte" style="list-style:none;margin:0;padding:0" role="list">
+        {schritte.map((s) => (
+          <li class="schritt" data-schritt>
+            <span class="schritt-ziffer" aria-hidden="true">{s.n}</span>
+            <h3>{s.titel}</h3>
+            <p>{s.text}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section id="werkstatt" class="flaeche hell" aria-labelledby="holz-titel">
+    <div class="innen">
+      <h2 id="holz-titel" class="holz-titel" data-bewegung="woerter">Holz und Werkstatt</h2>
+      <div class="holz-raster">
+        <Ersatz form={5} motiv="Hobelbank und Zwingen in der Werkstatt" />
+        <div class="holz-spalte">
+          <div class="holz-text">
+            <h3>Holz, das arbeitet</h3>
+            <p>Holz lebt: Es quillt, schwindet und verzieht sich. Deshalb wählen wir jedes Brett von Hand aus, lassen es ruhen und verbinden es so, dass es sich bewegen darf, ohne zu reißen.</p>
+            <p>Verbunden wird, wo es geht, mit Zinken, Zapfen und Gehrungen, nicht mit Platten und Kleber allein.</p>
+          </div>
+          <Ersatz form={6} motiv="Eichenbretter, aufgeschichtet zum Trocknen" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="fragen" class="flaeche hell-2" aria-labelledby="fragen-titel">
+    <div class="innen">
+      <h2 id="fragen-titel" class="fragen-kopf" data-bewegung="woerter">Häufige Fragen</h2>
+      <div class="fragen-liste">
+        {fragen.map((q) => (
+          <details>
+            <summary>{q.f}</summary>
+            <p>{q.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="flaeche dunkel" aria-labelledby="aufruf-titel">
+    <div class="innen">
+      <span class="aufruf-kupfer" aria-hidden="true"></span>
+      <h2 id="aufruf-titel" class="aufruf-titel" data-bewegung="woerter">Was soll bei Ihnen zugeschnitten werden?</h2>
+      <p class="aufruf-text">Beschreiben Sie uns die Stelle, das Möbel oder das Erbstück. Wir melden uns und besprechen, was möglich ist.</p>
+      <a class="knopf" href="/anfrage/">Anfrage stellen</a>
+      <p class="aufruf-kontakt">Telefon: Platzhalter: Telefonnummer</p>
+    </div>
+  </section>
+</Grund>

@@ -1,0 +1,44 @@
+---
+// Gemeinsamer Rahmen: Sprunglink, Inhalt, Fuß, feste Leiste unten (genau eine je Seite).
+import "@fontsource-variable/big-shoulders-display/wght";
+import "@fontsource/ibm-plex-sans/400.css";
+import "@fontsource/ibm-plex-sans/600.css";
+import "../styles/tokens.css";
+import "../styles/grund.css";
+import "../bewegung/bewegung.css";
+import { KOPF_SKRIPT } from "../bewegung/bewegung.mjs";
+import Fuss from "../komponenten/Fuss.astro";
+import Leiste from "../komponenten/Leiste.astro";
+
+interface Props {
+  titel: string;
+  beschreibung?: string;
+}
+
+const { titel, beschreibung = "Tischlerei Kernholz baut Möbel nach Maß, übernimmt Innenausbau sowie Reparatur und Restaurierung. Platzhalter: Ort." } = Astro.props;
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script is:inline set:html={KOPF_SKRIPT} />
+    <link rel="icon" href="data:," />
+    <meta name="description" content={beschreibung} />
+    <meta name="theme-color" content="#1E1813" />
+    <title>{titel}</title>
+  </head>
+  <body>
+    <a class="sprung" href="#inhalt">Zum Inhalt</a>
+    <main id="inhalt">
+      <slot />
+    </main>
+    <Fuss />
+    <Leiste />
+    <script>
+      import { bewegungStarten } from "../bewegung/bewegung.mjs";
+      bewegungStarten({ sanft: true });
+    </script>
+  </body>
+</html>

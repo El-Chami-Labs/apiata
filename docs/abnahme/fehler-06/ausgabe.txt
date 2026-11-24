@@ -1,0 +1,12 @@
+ok: build (2 s)
+ok: typen (4 s)
+ok: lint (1 s)
+muss: logik: ❯ tests/logik/anfrage.test.ts (7 tests | 1 failed) 10ms
+ok: datenschutz (0 s)
+ok: fakten (0 s)
+ok: pakete (0 s)
+muss: e2e: Anfrage: leer absenden zeigt Hinweis, ausgefüllt erzeugt mailto-Link [handy]: Error: expect(locator).toBeVisible() failed
+muss: e2e: Anfrage: leer absenden zeigt Hinweis, ausgefüllt erzeugt mailto-Link [desktop]: Error: expect(locator).toBeVisible() failed
+ok: messung (0 Tests, 3 s)
+SCHNELLPRÜFUNG ROT → /home/user/dev-agents/docs/abnahme/fehler-06/schnellpruefung.md
+Exit 1

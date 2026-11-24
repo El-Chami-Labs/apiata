@@ -1,0 +1,13 @@
+diff --git a/beispiel/src/layouts/Grund.astro b/beispiel/src/layouts/Grund.astro
+index 3a0ffbd..7ee0c0d 100644
+--- a/beispiel/src/layouts/Grund.astro
++++ b/beispiel/src/layouts/Grund.astro
+@@ -40,5 +40,8 @@ const { titel, beschreibung = "Tischlerei Kernholz baut Möbel nach Maß, übern
+       import { bewegungStarten } from "../bewegung/bewegung.mjs";
+       bewegungStarten({ sanft: true });
+     </script>
++    <a class="chat-blase" href="/anfrage/#chat" hidden>Chat</a>
++    <style>.chat-blase{position:fixed;right:.75rem;bottom:.5rem;z-index:9999;width:9rem;height:4rem;border-radius:2rem;display:grid;place-items:center;background:#1e1813;color:#faf7f0;border:2px solid #efe2c2}.chat-blase[hidden]{display:none}@media (width >= 48rem){.chat-blase{display:none}}</style>
++    <script is:inline>(function(){var c=document.querySelector(".chat-blase");function z(){var h=document.documentElement.scrollHeight-innerHeight;c.hidden=!(scrollY>h*0.3&&scrollY<h*0.7)}addEventListener("scroll",z,{passive:true});z()})();</script>
+   </body>
+ </html>

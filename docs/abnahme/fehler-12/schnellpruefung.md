@@ -1,0 +1,42 @@
+# Schnellprüfung wegwerf-12
+
+2026-11-05T23:20:53.747Z · Ergebnis: ROT
+
+- ok: build (2 s)
+- ok: typen (4 s)
+- ok: lint (1 s)
+- ok: logik (1 s)
+- muss: datenschutz: Datenschutz: /404/: Google Fonts eingebunden (Schriften selbst hosten mit @fontsource)
+- muss: datenschutz: Datenschutz: /404/: <link> zu fremdem Server: https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap
+- muss: datenschutz: Datenschutz: /anfrage/: Google Fonts eingebunden (Schriften selbst hosten mit @fontsource)
+- muss: datenschutz: Datenschutz: /anfrage/: <link> zu fremdem Server: https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap
+- muss: datenschutz: Datenschutz: /datenschutz/: Google Fonts eingebunden (Schriften selbst hosten mit @fontsource)
+- muss: datenschutz: Datenschutz: /datenschutz/: <link> zu fremdem Server: https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap
+- muss: datenschutz: Datenschutz: /impressum/: Google Fonts eingebunden (Schriften selbst hosten mit @fontsource)
+- muss: datenschutz: Datenschutz: /impressum/: <link> zu fremdem Server: https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap
+- muss: datenschutz: Datenschutz: /: Google Fonts eingebunden (Schriften selbst hosten mit @fontsource)
+- muss: datenschutz: Datenschutz: /: <link> zu fremdem Server: https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap
+- muss: datenschutz: Datenschutz: /leistungen/: Google Fonts eingebunden (Schriften selbst hosten mit @fontsource)
+- muss: datenschutz: Datenschutz: /leistungen/: <link> zu fremdem Server: https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap
+- ok: fakten (0 s)
+- ok: pakete (0 s)
+- ok: e2e (17 Tests, 11 s)
+- ok: messung (0 Tests, 3 s)
+
+## datenschutz
+
+```
+muss: Datenschutz: /404/: Google Fonts eingebunden (Schriften selbst hosten mit @fontsource)
+muss: Datenschutz: /404/: <link> zu fremdem Server: https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap
+muss: Datenschutz: /anfrage/: Google Fonts eingebunden (Schriften selbst hosten mit @fontsource)
+muss: Datenschutz: /anfrage/: <link> zu fremdem Server: https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap
+muss: Datenschutz: /datenschutz/: Google Fonts eingebunden (Schriften selbst hosten mit @fontsource)
+muss: Datenschutz: /datenschutz/: <link> zu fremdem Server: https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap
+muss: Datenschutz: /impressum/: Google Fonts eingebunden (Schriften selbst hosten mit @fontsource)
+muss: Datenschutz: /impressum/: <link> zu fremdem Server: https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap
+muss: Datenschutz: /: Google Fonts eingebunden (Schriften selbst hosten mit @fontsource)
+muss: Datenschutz: /: <link> zu fremdem Server: https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap
+muss: Datenschutz: /leistungen/: Google Fonts eingebunden (Schriften selbst hosten mit @fontsource)
+muss: Datenschutz: /leistungen/: <link> zu fremdem Server: https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap
+FREMDQUELLEN ROT (12)
+```

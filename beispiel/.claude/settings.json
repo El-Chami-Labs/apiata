@@ -1,0 +1,119 @@
+{
+  "permissions": {
+    "defaultMode": "dontAsk",
+    "allow": [
+      "Read",
+      "Edit",
+      "Write",
+      "Glob",
+      "Grep",
+      "Agent",
+      "Task",
+      "Skill",
+      "AskUserQuestion",
+      "TodoWrite",
+      "TaskCreate",
+      "TaskUpdate",
+      "Bash(node scripts/*)",
+      "Bash(node --test scripts/kit-test/*)",
+      "Bash(npm install*)",
+      "Bash(npm ci*)",
+      "Bash(npm run *)",
+      "Bash(npm ls*)",
+      "Bash(npm view *)",
+      "Bash(npx astro *)",
+      "Bash(npx playwright *)",
+      "Bash(npx vitest *)",
+      "Bash(npx eslint *)",
+      "Bash(npx tsc *)",
+      "Bash(npx prettier *)",
+      "Bash(git status*)",
+      "Bash(git diff*)",
+      "Bash(git log*)",
+      "Bash(git show *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git push *)",
+      "Bash(git fetch*)",
+      "Bash(git pull --ff-only*)",
+      "Bash(git checkout *)",
+      "Bash(git switch *)",
+      "Bash(git branch*)",
+      "Bash(git rev-parse *)",
+      "Bash(git restore *)",
+      "Bash(git rm *)",
+      "Bash(git mv *)",
+      "Bash(git revert *)",
+      "Bash(git ls-files*)",
+      "Bash(git remote *)",
+      "Bash(git clone --depth 1 *)",
+      "Bash(gh pr create*)",
+      "Bash(gh pr view *)",
+      "Bash(gh pr edit *)",
+      "Bash(gh pr comment *)",
+      "Bash(gh pr checks *)",
+      "Bash(gh api *)",
+      "Bash(ls*)",
+      "Bash(cat *)",
+      "Bash(head *)",
+      "Bash(tail *)",
+      "Bash(wc *)",
+      "Bash(grep *)",
+      "Bash(find *)",
+      "Bash(mkdir *)",
+      "Bash(cp *)",
+      "Bash(mv *)",
+      "Bash(rm *)",
+      "Bash(echo *)",
+      "Bash(ffmpeg *)",
+      "Bash(ffprobe *)"
+    ],
+    "deny": [
+      "Read(./.env*)",
+      "Edit(docs/pakete-freigegeben.md)",
+      "Write(docs/pakete-freigegeben.md)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          { "type": "command", "command": "node \"${CLAUDE_PROJECT_DIR:-.}/.claude/hooks/grenzen.mjs\"" }
+        ]
+      },
+      {
+        "matcher": "mcp__.*github.*__(push_files|create_or_update_file|delete_file)",
+        "hooks": [
+          { "type": "command", "command": "node \"${CLAUDE_PROJECT_DIR:-.}/.claude/hooks/grenzen.mjs\"" }
+        ]
+      },
+      {
+        "matcher": "Bash|Write|Edit|MultiEdit",
+        "hooks": [
+          { "type": "command", "command": "node \"${CLAUDE_PROJECT_DIR:-.}/.claude/hooks/paket-sperre.mjs\"" }
+        ]
+      },
+      {
+        "matcher": "AskUserQuestion",
+        "hooks": [
+          { "type": "command", "command": "node \"${CLAUDE_PROJECT_DIR:-.}/.claude/hooks/frage-sperre.mjs\"" }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          { "type": "command", "command": "node \"${CLAUDE_PROJECT_DIR:-.}/.claude/hooks/paket-sperre.mjs\"" }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          { "type": "command", "command": "node \"${CLAUDE_PROJECT_DIR:-.}/.claude/hooks/lauf-ende.mjs\"" }
+        ]
+      }
+    ]
+  }
+}

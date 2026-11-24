@@ -1,0 +1,7 @@
+[
+ { "version": "3.2.1", "datum": "2026-11-06", "merkmale": [["platzhalter"], ["mailto", "tel:", "href", "link", "alt=", "aria-label"]] },
+ { "version": "3.2.1", "datum": "2026-11-06", "merkmale": [["browser", "playwright"], ["install"]] },
+ { "version": "3.2.1", "datum": "2026-11-06", "merkmale": [["commit", "push"], ["grün", "haken"], ["startete", "neu gestartet", "neustart", "erneut", "wieder"]] },
+ { "version": "3.2.1", "datum": "2026-11-06", "merkmale": [["vorschau"], ["link"], ["branch", "zeichen", "leere", "404"]] },
+ { "version": "3.2.2", "datum": "2026-11-15", "merkmale": [["kit-feedback"], ["erledigt", "entfern", "aufräum", "lösch"]] }
+]

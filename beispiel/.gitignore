@@ -1,0 +1,12 @@
+node_modules/
+dist/
+dist-*/
+.astro/
+.wrangler/
+test-results/
+playwright-report/
+medien-eingang/
+.lauf-stop.json
+.env*
+*.pem
+*.key

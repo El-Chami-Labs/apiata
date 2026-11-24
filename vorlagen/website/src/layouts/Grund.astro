@@ -1,0 +1,41 @@
+---
+// Grundlayout. Die Gestaltung ersetzt Kopf und Fuß; die Links zu Impressum und Datenschutz bleiben im Fuß.
+import "../styles/grund.css";
+
+interface Props {
+  titel: string;
+  beschreibung?: string;
+}
+
+const { titel, beschreibung = "__NAME__" } = Astro.props;
+const navigation = [
+  { href: "/", text: "Start" },
+];
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="data:," />
+    <meta name="description" content={beschreibung} />
+    <title>{titel}</title>
+  </head>
+  <body>
+    <a class="sprung" href="#inhalt">Zum Inhalt</a>
+    <header class="kopf">
+      <a class="marke" href="/">__NAME__</a>
+      <nav aria-label="Hauptnavigation">
+        <ul>{navigation.map((n) => <li><a href={n.href}>{n.text}</a></li>)}</ul>
+      </nav>
+    </header>
+    <main id="inhalt">
+      <slot />
+    </main>
+    <footer class="fuss">
+      <a href="/impressum/">Impressum</a>
+      <a href="/datenschutz/">Datenschutz</a>
+    </footer>
+  </body>
+</html>
